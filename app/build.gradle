@@ -36,7 +36,19 @@ testing {
     }
 }
 
+println layout.buildDirectory.dir("")
+File configFile = file('src/test/resources/proj1/products-schema.json')
+
 application {
     // Define the main class for the application.
     mainClass = 'proj1.App'
+}
+
+tasks.register('copyReport2', Copy){
+    from "$buildDir/reports/tests/test/index.html"
+    into "$buildDir/reports/resources/"
+}
+
+tasks.register('TestReport', Test){
+    println "\n testing"
 }
