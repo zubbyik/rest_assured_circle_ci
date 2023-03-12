@@ -14,7 +14,12 @@ public class SchemaTest {
         //get(path).then().body(matchesJsonSchemaInClasspath(path));
         InputStream path = getClass().getClassLoader().getResourceAsStream("users-schema.json");
         assert path != null;
-        get("https://jsonplaceholder.typicode.com/users").then().assertThat().body(matchesJsonSchema(path));
+        get("https://jsonplaceholder.typicode.com/users")
+                .then()
+                .assertThat()
+                .statusCode(200)
+                .and()
+                .body(matchesJsonSchema(path));
 
     }
 }
